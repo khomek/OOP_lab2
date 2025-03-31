@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 SyncTask();
-
+AsyncTask().Wait(3000);
 async Task<string> asyncTask(string url){
     HttpClient client = new HttpClient();
     try
@@ -41,14 +41,18 @@ void SyncTask(){
     time.Stop();
     Console.WriteLine($"Time for the sync program to work: {time.ElapsedMilliseconds} ms\n");
 }
+    
+async Task<string> AsyncTask(){
     Console.WriteLine("AyncTask");
     var time = new Stopwatch();
     time.Start();
-    var first1 = await asyncTask("https://official-joke-api.appspot.com/random_joke");
-    Console.WriteLine($"URL1 is: \n{first1}\n");
+    var first1 =  await asyncTask("https://official-joke-api.appspot.com/random_joke");
     var second1 = await asyncTask("https://api.exchangerate-api.com/v4/latest/USD");
+    var third1 =  await asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
+    Console.WriteLine($"URL1 is: \n{first1}\n");
     Console.WriteLine($"URL2 is: \n{second1}\n");
-    var third1 = await asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
     Console.WriteLine($"URL3 is: \n{third1}\n");
     time.Stop();
     Console.WriteLine($"Time for the async program to work: {time.ElapsedMilliseconds} ms\n");
+    return null;
+}
