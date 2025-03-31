@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
 
-
-    SyncTask();
-    AsyncTask().Wait(3000);
+SyncTask();
 
 async Task<string> asyncTask(string url){
     HttpClient client = new HttpClient();
@@ -30,8 +28,7 @@ async Task<string> asyncTask(string url){
         return null;
     }
 }
-void SyncTask()
-{
+void SyncTask(){
     Console.WriteLine("SyncTask");
     var time = new Stopwatch();
     time.Start();
@@ -44,8 +41,6 @@ void SyncTask()
     time.Stop();
     Console.WriteLine($"Time for the sync program to work: {time.ElapsedMilliseconds} ms\n");
 }
-async Task<string> AsyncTask()
-{
     Console.WriteLine("AyncTask");
     var time = new Stopwatch();
     time.Start();
@@ -57,5 +52,3 @@ async Task<string> AsyncTask()
     Console.WriteLine($"URL3 is: \n{third1}\n");
     time.Stop();
     Console.WriteLine($"Time for the async program to work: {time.ElapsedMilliseconds} ms\n");
-    return null;
-}
