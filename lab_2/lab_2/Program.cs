@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 
 SyncTask();
-AsyncTask().Wait(3000);
+await AsyncTask();
 async Task<string> asyncTask(string url){
+
     HttpClient client = new HttpClient();
     try
     {
@@ -33,11 +34,11 @@ void SyncTask(){
     var time = new Stopwatch();
     time.Start();
     var first = asyncTask("https://official-joke-api.appspot.com/random_joke").Result;
-    Console.WriteLine($"URL1 is: \n{first}\n");
     var second = asyncTask("https://api.exchangerate-api.com/v4/latest/USD").Result;
-    Console.WriteLine($"URL2 is: \n {second}\n");
     var third = asyncTask("https://geek-jokes.sameerkumar.website/api?format=json").Result;
-    Console.WriteLine($"URL3 is: \n {third}\n");
+    Console.WriteLine($"URL1S is: \n{first}\n");
+    Console.WriteLine($"URL2S is: \n {second}\n");
+    Console.WriteLine($"URL3S is: \n {third}\n");
     time.Stop();
     Console.WriteLine($"Time for the sync program to work: {time.ElapsedMilliseconds} ms\n");
 }
@@ -46,12 +47,15 @@ async Task<string> AsyncTask(){
     Console.WriteLine("AyncTask");
     var time = new Stopwatch();
     time.Start();
-    var first1 =  await asyncTask("https://official-joke-api.appspot.com/random_joke");
-    var second1 = await asyncTask("https://api.exchangerate-api.com/v4/latest/USD");
-    var third1 =  await asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
-    Console.WriteLine($"URL1 is: \n{first1}\n");
-    Console.WriteLine($"URL2 is: \n{second1}\n");
-    Console.WriteLine($"URL3 is: \n{third1}\n");
+    var first1 =   asyncTask("https://official-joke-api.appspot.com/random_joke");
+    var second1 =  asyncTask("https://api.exchangerate-api.com/v4/latest/USD");
+    var third1 =   asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
+    await first1;
+    await second1;
+    await third1;
+    Console.WriteLine($"URL1 is: \n{first1.Result}\n");
+    Console.WriteLine($"URL2 is: \n{second1.Result}\n");
+    Console.WriteLine($"URL3 is: \n{third1.Result}\n");
     time.Stop();
     Console.WriteLine($"Time for the async program to work: {time.ElapsedMilliseconds} ms\n");
     return null;
