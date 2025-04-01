@@ -2,6 +2,7 @@
 
 SyncTask();
 await AsyncTask();
+
 async Task<string> asyncTask(string url){
 
     HttpClient client = new HttpClient();
