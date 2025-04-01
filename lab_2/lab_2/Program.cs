@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 SyncTask();
- await AsyncTask();
+await AsyncTask();
 
 async Task<string> asyncTask(string url){
 
@@ -54,7 +54,6 @@ async Task AsyncTask(){
     var second =  await asyncTask("https://api.exchangerate-api.com/v4/latest/USD");
     var third =   await asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
 
-    //await Task.WhenAll(first, second, third);
 
     Console.WriteLine($"URL1 is: \n{first}\n");
     Console.WriteLine($"URL2 is: \n{second}\n");
