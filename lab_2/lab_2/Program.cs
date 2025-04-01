@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 
 SyncTask();
-await AsyncTask();
+ await AsyncTask();
 
 async Task<string> asyncTask(string url){
 
@@ -50,15 +50,15 @@ async Task AsyncTask(){
     Console.WriteLine("AyncTask");
     var time = new Stopwatch();
     time.Start();
-    var first =   asyncTask("https://official-joke-api.appspot.com/random_joke");
-    var second =  asyncTask("https://api.exchangerate-api.com/v4/latest/USD");
-    var third =   asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
+    var first =   await asyncTask("https://official-joke-api.appspot.com/random_joke");
+    var second =  await asyncTask("https://api.exchangerate-api.com/v4/latest/USD");
+    var third =   await asyncTask("https://geek-jokes.sameerkumar.website/api?format=json");
 
-    await Task.WhenAll(first, second, third);
+    //await Task.WhenAll(first, second, third);
 
-    Console.WriteLine($"URL1 is: \n{first.Result}\n");
-    Console.WriteLine($"URL2 is: \n{second.Result}\n");
-    Console.WriteLine($"URL3 is: \n{third.Result}\n");
+    Console.WriteLine($"URL1 is: \n{first}\n");
+    Console.WriteLine($"URL2 is: \n{second}\n");
+    Console.WriteLine($"URL3 is: \n{third}\n");
 
     time.Stop();
     Console.WriteLine($"Time for the async program to work: {time.ElapsedMilliseconds} ms\n");
